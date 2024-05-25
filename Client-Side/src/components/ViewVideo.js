@@ -6,7 +6,6 @@ import { Box } from "@mui/material";
 import { Button } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import "../Styling/SidebarStyle.css";
-import video from "../PythonDecrypt/Videos/OutputVideo_5e2d3d73-f21e-4d0a-bab5-362c5eaa065e_20240523_174001.mp4";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
