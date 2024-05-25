@@ -1,22 +1,29 @@
-const { exec } = require("child_process");
-    var pwd = "abc";
-    exec("gcc Gautham_LightweightENC.c -lm", (error, stdout, stderr) => {
+const { exec } = require("child_process"); 
+
+const env = { ...process.env, PATH: `C:/MinGW/bin:${process.env.PATH}` };
+
+
+exec("gcc Gautham_LightweightENC.c -lm", { env }, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  if (stderr) {
+    console.error(`stderr: ${stderr}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+
+  // Execute the compiled program
+  exec("./Gautham_LightweightENC < new.txt", { env }, (error, stdout, stderr) => {
     if (error) {
-        console.log(error);
-        return;
+      console.error(`exec error: ${error}`);
+      return;
     }
     if (stderr) {
-        console.log(stderr);
-        return;
+      console.error(`stderr: ${stderr}`);
+      return;
     }
-    });
-    exec("./a.out < new.txt", (error, stdout, stderr) => {
-    if (error) {
-        return;
-    }
-    if (stderr) {
-        pwd = stderr;
-        console.log(pwd);
-        return;
-    }
-    });
+    console.log(`stdout: ${stdout}`);
+  });
+});
