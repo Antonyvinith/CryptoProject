@@ -106,7 +106,7 @@ export default function Navebar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+     
       <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
     </Menu>
   );

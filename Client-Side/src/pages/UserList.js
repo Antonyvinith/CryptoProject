@@ -42,19 +42,18 @@ function UserList() {
               <table className="table border shadow">
                 <thead>
                   <tr>
-                    {/* <th scope="col">#</th> */}
+                    
                     <th scope="col">UserName</th>
-                    <th scope="col">User Type</th>
-                    <th scope="col">email</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {console.log("users",users)}
+                  {console.log("users", users)}
                   {users.map((user) => (
                     <tr>
                       {/* <th scope="row">{index+1}</th> */}
-                      <td ><strong>{user}</strong></td>
-                     
+                      <td>
+                        <strong>{user}</strong>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
