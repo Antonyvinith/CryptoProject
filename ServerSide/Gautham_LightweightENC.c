@@ -756,6 +756,7 @@ int main()
 printf("Enter any text\n");
 	char s[250];
 	gets(s);
+	// char s[]="antony";
 	int *a=texttobinary(s);
 	int ln=strlen(s);
 	float ln1=(float)ln/8;
