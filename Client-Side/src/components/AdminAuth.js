@@ -84,17 +84,7 @@ function AdminAuth() {
             setDob(res.data.dateOfBirth);
             setEmail(res.data.email);
             setPhone(res.data.phone);
-            setCustomerID(res.data.customerID);
-            setToken(res.data.responseData.customer.token);
-
-            localStorage.setItem("token", res.data.responseData.token);
-            localStorage.setItem("firstName", res.data.responseData.firstName);
-            localStorage.setItem("lastName", res.data.responseData.lastName);
-            localStorage.setItem("email", res.data.responseData.email);
-            localStorage.setItem("phone", res.data.responseData.phone);
-            localStorage.setItem("dob", res.data.responseData.dateOfBirth);
-            localStorage.setItem("phone", res.data.responseData.phone);
-            localStorage.setItem("customerID", res.data.responseData.id);
+           
             localStorage.setItem(
               "username",
               res.data.responseData.user.username
@@ -159,18 +149,6 @@ function AdminAuth() {
                   </Button>
                 </center>
                 <br />
-                {/* <center>
-                  Forgot password?{" "}
-                  <a onClick={handleForgotClick} style={{ cursor: "pointer" }}>
-                    <u>Click here</u>
-                  </a>
-                </center>
-                <center>
-                  Don't have an account?{" "}
-                  <NavLink onClick={() => setTab(false)}>
-                    <u>Sign Up</u>
-                  </NavLink>{" "}
-                </center> */}
               </div>
             </div>
           </div>

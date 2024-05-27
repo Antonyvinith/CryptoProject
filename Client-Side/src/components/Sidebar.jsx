@@ -41,7 +41,7 @@ import {
 import "../Styling/SidebarStyle.css";
 import ListItemComp from "../customComponents/ListItem";
 import MenuItemComp from "../customComponents/MenuItemComp";
-import AnalyticsIcon from "../CustomIcons/AnalyticsIcon";
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 const drawerWidth = 240;
 
 export default function Sidebar() {
