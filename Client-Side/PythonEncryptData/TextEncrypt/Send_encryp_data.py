@@ -39,8 +39,11 @@ def encrypt_and_save_to_mongodb(text_message):
      
         collection.insert_one(encryptedMsgObj)
         print("\n\nData Encrypted",encryptedMsg)
-
+        start_time = time.time()*1000;
         decryptedMsg=decrypt_ECC(encryptedMsg,privKey)
+        end_time = time.time()*1000;
+
+        print("\n\nTime taken to decrypt Text data : ",(end_time-start_time)," Milliseconds\n\n")
         print(decryptedMsg)
         writeDecryptedData(decryptedMsg)
 
@@ -50,11 +53,9 @@ def encrypt_and_save_to_mongodb(text_message):
 
 def writeDecryptedData(decryptedMsg):
     path = "Client-Side\\src\\PythonDecrypt\\TextData\\DecryptedFile.txt"  
-    start_time=time.time()*1000;
+    
     decryptedMsg=decryptedMsg.decode('utf-8')
-    end_time=time.time()*1000;
-
-    print("\n\n Time Taken for Decrypted Text Data", (end_time-start_time),"Milliseconds")
+    
     try:
         with open(path, "a") as file:
             file.write("\n\n\n")

@@ -11,7 +11,7 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client.Data
 collection = db.Video
 
-video_file_path = "Client-Side\\PythonEncryptData\\VideoEncrypt\\VideoInput\\sample_video.mp4"
+video_file_path = "Client-Side\PythonEncryptData\VideoEncrypt\VideoInput\\file_example_MP4_640_3MG.mp4"
 
 
 
