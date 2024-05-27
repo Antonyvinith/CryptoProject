@@ -6,6 +6,7 @@ from PIL import Image
 import io
 import os
 import uuid
+import time
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
@@ -24,7 +25,16 @@ privKey = secrets.randbelow(curve.field.n)
 pubKey = privKey * curve.g
 
 
+
+ # =====================>Calculating Time Taken for Image Data===============>
+start_time=((time.time()*1000))
+
 encrypted_image = encrypt_ECC(image_bytes, pubKey)
+
+end_time=((time.time()*1000))
+
+print("\n\nTime taken to encrypt Image data : ",(end_time-start_time)," Milliseconds")
+        # =========================================================================
 
 
 encrypted_image_doc = {
@@ -34,17 +44,22 @@ encrypted_image_doc = {
     'ciphertextPubKey': hex(encrypted_image[3].x) + hex(encrypted_image[3].y % 2)[2:]
 }
 
-print("Encrypted Message: " + encrypted_image_doc)
+print("\n\nEncrypted Message: " , encrypted_image_doc)
 
 collection.insert_one(encrypted_image_doc)
 
-print('Image encrypted and saved to MongoDB successfully.')
+print('\n\nImage encrypted and saved to MongoDB successfully.')
 
+
+start_time=time.time()*1000;
 
 decryptedMsg = decrypt_ECC(encrypted_image, privKey)
 
 reconstructed_image = byte_array_to_image(decryptedMsg)
 
+end_time=time.time()*1000;
+
+print("\n\nTime Taken for Decryption of Image Data",(end_time-start_time),"Milliseconds")
 
 
 unique_filename = f"decrypted_image_{uuid.uuid4().hex}.jpg"
@@ -52,5 +67,5 @@ output_path = os.path.join("Client-Side","src", "PythonDecrypt", "image", unique
 
 
 reconstructed_image.save(output_path)
-print(f'Reconstructed image saved to {output_path}')
+print(f'\n\nReconstructed image saved to {output_path}')
 

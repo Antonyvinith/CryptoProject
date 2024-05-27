@@ -4,6 +4,7 @@ import binascii
 import hashlib, secrets, binascii
 import os
 import uuid
+import time
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
@@ -12,14 +13,23 @@ collection = db.Audios
 
 # Load audio from file
 audio_file_path = "Client-Side\PythonEncryptData\AudioEncrypt\AudioInput\sample_audio.mp3"
-audio_data = audio_to_binary(audio_file_path)
+
 
 # Generate ECC key pair
 privKey = secrets.randbelow(curve.field.n)
 pubKey = privKey * curve.g
 
-# Encrypt the audio data
+
+ # =====================>Calculating Time Taken for Text Data===============>
+start_time=((time.time()*1000))
+
+audio_data = audio_to_binary(audio_file_path)
 encrypted_audio = encrypt_ECC(audio_data, pubKey)
+
+end_time=((time.time()*1000))
+
+print("\n\nTime taken to encrypt Audios data : ",(end_time-start_time)," milliseconds")
+        # =========================================================================
 
 # Convert encrypted audio to MongoDB document format
 encrypted_audio_doc = {
@@ -35,13 +45,17 @@ collection.insert_one(encrypted_audio_doc)
 print("Encrypted audio",encrypted_audio_doc)
 print('Audio encrypted and saved to MongoDB successfully.')
 
-decryptedMsg = decrypt_ECC(encrypted_audio, privKey)
+
 
 
 unique_filename = f"decrypted_audio_{uuid.uuid4().hex}.mp3"
 output_path = os.path.join("Client-Side","src", "PythonDecrypt", "Audio", unique_filename)
 
-
+start_time = time.time()*1000;
+decryptedMsg = decrypt_ECC(encrypted_audio, privKey)
 binary_to_audio(decryptedMsg, output_path)
+end_time = time.time()*1000;
+
+print("\n\nTime taken to decrypt Audios data : ",(end_time-start_time)," milliseconds")
 
 print("Data Decrypted and saved Sucessfully to Parh",output_path)
