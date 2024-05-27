@@ -22,6 +22,8 @@ app.post("/CreateAdmin", async (req, res) => {
       .json({ error: "Username and password are required" });
   }
 
+  //   ================>To Verify Duplicate User<=========================
+
   //   ============>To Store All users<===================
   try {
     const uri = "mongodb://localhost:27017/";
@@ -194,7 +196,7 @@ app.get("/viewUsers", async (req, res) => {
 
     var user = await db.collection("users").find({}).toArray();
     console.log(user);
-    res.send(user.map((user) => user.Username));    
+    res.send(user.map((user) => user.Username));
   } catch (error) {
     console.log(error);
   }
