@@ -48,9 +48,9 @@ function ProductList() {
               <Typography variant="h3" gutterBottom>
                 Text Data
               </Typography>
-              <Typography variant="body1">
+              
                     {fileData}
-              </Typography>
+           
             </div>
           </div>
           <div>

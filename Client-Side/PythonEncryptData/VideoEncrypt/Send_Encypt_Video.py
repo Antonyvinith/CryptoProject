@@ -10,7 +10,7 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client.Data
 collection = db.Video
 
-video_file_path = "PythonEncryptData\VideoEncrypt\sample_video.mp4"
+video_file_path = "Client-Side\PythonEncryptData\VideoEncrypt\VideoInput\sample_video.mp4"
 video_binary = video_to_binary(video_file_path)
 
 
@@ -37,5 +37,7 @@ decryptedMsg = decrypt_ECC(encrypted_msg, privKey)
 print("decrypted msg:", decryptedMsg)
 
 unique_filename = f"OutputVideo_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp4"
-output_file_path = os.path.join("PythonDecrypt", "Videos", unique_filename)
+output_file_path = os.path.join("Client-Side","src","PythonDecrypt", "Videos", unique_filename)
 binary_to_video(decryptedMsg, output_file_path)
+
+print("Decrypted Video data successfully saved  to the path",output_file_path)

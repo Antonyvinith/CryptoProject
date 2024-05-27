@@ -36,8 +36,7 @@ def decrypt_ECC(encryptedMsg, privKey):
     plaintext = decrypt_AES_GCM(ciphertext, nonce, authTag, secretKey)
     return plaintext
 
-image_path = "PythonEncryptData\ImageEncrypt\Ghost1.jpg"
-image = Image.open(image_path)
+
 
 def image_to_byte_array(image):
     img_byte_array = io.BytesIO()
@@ -48,27 +47,5 @@ def byte_array_to_image(byte_array):
     return Image.open(io.BytesIO(byte_array))
 
 
-msg = image_to_byte_array(image)
 
-print("original msg:", msg)
 
-privKey = secrets.randbelow(curve.field.n)
-pubKey = privKey * curve.g
-
-encryptedMsg = encrypt_ECC(msg, pubKey)
-encryptedMsgObj = {
-    'ciphertext': binascii.hexlify(encryptedMsg[0]),
-    'nonce': binascii.hexlify(encryptedMsg[1]),
-    'authTag': binascii.hexlify(encryptedMsg[2]),
-    'ciphertextPubKey': hex(encryptedMsg[3].x) + hex(encryptedMsg[3].y % 2)[2:]
-}
-print("encrypted msg:", encryptedMsgObj)
-
-decryptedMsg = decrypt_ECC(encryptedMsg, privKey)
-
-print("\n\n\n\n\ndecrypted msg:", decryptedMsg)
-
-reconstructed_image = byte_array_to_image(decryptedMsg)
-
-# Save reconstructed image
-reconstructed_image.save("decrypted_image.jpg")

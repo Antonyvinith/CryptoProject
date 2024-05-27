@@ -43,21 +43,4 @@ def binary_to_audio(binary_data, output_file_path):
     with open(output_file_path, 'wb') as audio_file:
         audio_file.write(binary_data)
 
-audio_file_path = "PythonEncryptData\AudioEncrypt\sample_audio.mp3"
-msg = audio_to_binary(audio_file_path)
-
-print("original msg:", msg)
-privKey = secrets.randbelow(curve.field.n)
-pubKey = privKey * curve.g
-
-encryptedMsg = encrypt_ECC(msg, pubKey)
-encryptedMsgObj = {
-    'ciphertext': binascii.hexlify(encryptedMsg[0]),
-    'nonce': binascii.hexlify(encryptedMsg[1]),
-    'authTag': binascii.hexlify(encryptedMsg[2]),
-    'ciphertextPubKey': hex(encryptedMsg[3].x) + hex(encryptedMsg[3].y % 2)[2:]
-}
-print("encrypted msg:", encryptedMsgObj)
-
-
 

@@ -13,7 +13,7 @@ db = client.Data
 collection = db.Images
 
 # Load image from file
-image_path = "PythonEncryptData\ImageEncrypt\Ghost1.jpg"
+image_path = "Client-Side\PythonEncryptData\ImageEncrypt\Ghost1.jpg"
 image = Image.open(image_path)
 
 # Convert image to byte array
@@ -47,7 +47,7 @@ reconstructed_image = byte_array_to_image(decryptedMsg)
 
 
 unique_filename = f"decrypted_image_{uuid.uuid4().hex}.jpg"
-output_path = os.path.join("src", "PythonDecrypt", "image", unique_filename)
+output_path = os.path.join("Client-Side","src", "PythonDecrypt", "image", unique_filename)
 
 
 reconstructed_image.save(output_path)

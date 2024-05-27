@@ -11,7 +11,7 @@ db = client.Data
 collection = db.Audios
 
 # Load audio from file
-audio_file_path = "PythonEncryptData\AudioEncrypt\sample_audio.mp3"
+audio_file_path = "Client-Side\PythonEncryptData\AudioEncrypt\sample_audio.mp3"
 audio_data = audio_to_binary(audio_file_path)
 
 # Generate ECC key pair
@@ -32,13 +32,16 @@ encrypted_audio_doc = {
 # Insert encrypted audio document into MongoDB collection
 collection.insert_one(encrypted_audio_doc)
 
+print("Encrypted audio",encrypted_audio_doc)
 print('Audio encrypted and saved to MongoDB successfully.')
 
 decryptedMsg = decrypt_ECC(encrypted_audio, privKey)
-print("decrypted msg:", decryptedMsg)
+
 
 unique_filename = f"decrypted_audio_{uuid.uuid4().hex}.mp3"
-output_path = os.path.join("src", "PythonDecrypt", "Audio", unique_filename)
+output_path = os.path.join("Client-Side","src", "PythonDecrypt", "Audio", unique_filename)
 
 
 binary_to_audio(decryptedMsg, output_path)
+
+print("Data Decrypted and saved Sucessfully to Parh",output_path)

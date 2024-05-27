@@ -25,8 +25,8 @@ app.post("/CreateAdmin", async (req, res) => {
   //   ============>To Store All users<===================
   try {
     const uri = "mongodb://localhost:27017/";
-    const dbName = "Actual_Users";
-    const collectionName = "Users";
+    const dbName = "Data";
+    const collectionName = "users";
     const client = new MongoClient(uri);
     await client.connect();
     const database = client.db(dbName);
@@ -193,8 +193,8 @@ app.get("/viewUsers", async (req, res) => {
     const db = client.db("Data");
 
     var user = await db.collection("users").find({}).toArray();
-
-    res.send(user.map((user) => user.username));
+    console.log(user);
+    res.send(user.map((user) => user.Username));    
   } catch (error) {
     console.log(error);
   }
@@ -211,27 +211,23 @@ app.get("/login", async (req, res) => {
     const db = client.db("Data");
     var dbPassword;
 
-    function extractAndDecryptMessage(output){
+    function extractAndDecryptMessage(output) {
+      const encryptedMessageStart = "------Encrypted Message------";
+      const encryptedMessageEnd = "------Decrypted Message------";
 
-        const encryptedMessageStart = "------Encrypted Message------";
-        const encryptedMessageEnd = "------Decrypted Message------";
-    
-        const startIndex = output.indexOf(encryptedMessageStart);
-        const endIndex = output.indexOf(encryptedMessageEnd);
-    
-        if (startIndex !== -1 && endIndex !== -1) {
-          return output
-            .slice(startIndex + encryptedMessageStart.length, endIndex)
-            .trim();
-        }
-    
-        return null;
-        
+      const startIndex = output.indexOf(encryptedMessageStart);
+      const endIndex = output.indexOf(encryptedMessageEnd);
+
+      if (startIndex !== -1 && endIndex !== -1) {
+        return output
+          .slice(startIndex + encryptedMessageStart.length, endIndex)
+          .trim();
+      }
+
+      return null;
     }
 
     var user = await db.collection("users").find({ username }).toArray();
-
-   
 
     for (var data of user) {
       console.log(data.password);
@@ -253,9 +249,9 @@ app.get("/login", async (req, res) => {
 app.get("/read-file", async (req, res) => {
   try {
     const filePath =
-      "C:/Users/antony.vinith/Desktop/FinalYearProj/frontend-apparel/PythonDecrypt/TextData/DecryptedFile.txt";
+      "C:/Users/antony.vinith/Desktop/FinalYearProj/Client-Side/src/PythonDecrypt/TextData/DecryptedFile.txt";
     var fileData = (await fs.readFile(filePath, "utf-8")).toString();
-    fileData = fileData.toString();
+
     res.send({ success: true, data: fileData });
   } catch (error) {
     console.error("Error reading file:", error);

@@ -39,18 +39,19 @@ def encrypt_and_save_to_mongodb(text_message):
         print('Error:', str(e))
 
 def writeDecryptedData(decryptedMsg):
-    path = "PythonDecrypt\DecryptedFile.txt"  
+    path = "Client-Side\src\PythonDecrypt\TextData\DecryptedFile.txt"  
     decryptedMsg=decryptedMsg.decode('utf-8')
     try:
         with open(path, "a") as file:
+            file.write("\n\n\n")
             file.write(decryptedMsg[1:])
-        print("Decrypted data has been written to the file successfully.")
+        print("Decrypted data has been written to the file successfully.to",path)
     except Exception as e:
         print("Error:", str(e))
 
 if __name__ == '__main__':
  
-    with open('PythonEncryptData\TextEncrypt\\TExt.txt', 'rb') as file:
+    with open('Client-Side\PythonEncryptData\TextEncrypt\InputText\Text.txt', 'rb') as file:
         msg = file.read()
         encrypt_and_save_to_mongodb(msg)
    
