@@ -13,7 +13,7 @@ db = client.Data
 collection = db.Images
 
 # Load image from file
-image_path = "Client-Side\PythonEncryptData\ImageEncrypt\Ghost1.jpg"
+image_path = "Client-Side\PythonEncryptData\ImageEncrypt\ImageInput\Ghost1.jpg"
 image = Image.open(image_path)
 
 # Convert image to byte array
@@ -34,6 +34,7 @@ encrypted_image_doc = {
     'ciphertextPubKey': hex(encrypted_image[3].x) + hex(encrypted_image[3].y % 2)[2:]
 }
 
+print("Encrypted Message: " + encrypted_image_doc)
 
 collection.insert_one(encrypted_image_doc)
 

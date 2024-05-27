@@ -11,7 +11,7 @@ db = client.Data
 collection = db.Audios
 
 # Load audio from file
-audio_file_path = "Client-Side\PythonEncryptData\AudioEncrypt\sample_audio.mp3"
+audio_file_path = "Client-Side\PythonEncryptData\AudioEncrypt\AudioInput\sample_audio.mp3"
 audio_data = audio_to_binary(audio_file_path)
 
 # Generate ECC key pair
