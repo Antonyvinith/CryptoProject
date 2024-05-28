@@ -13,7 +13,7 @@ import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import ImageIcon from "@mui/icons-material/Image";
 import PieChartIcon from "@mui/icons-material/PieChart";
-import TextSnippetIcon from "@mui/icons-material/TextSnippet";
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import {
   Dashboard,
   InventoryTwoTone,
@@ -184,7 +184,11 @@ export default function Sidebar() {
             isSelected={selectedItem === "/viewVideo"}
             onItemClick={handleItemClick}
           />
+
+     
         </Collapse>
+
+      
 
         {/* Devices List */}
 
@@ -199,6 +203,8 @@ export default function Sidebar() {
         />
 
         <Collapse in={isAdminClosed} timeout="auto" unmountOnExit>
+         
+
           <ListItemComp
             icon={<Person />}
             dynamicText="Users"
