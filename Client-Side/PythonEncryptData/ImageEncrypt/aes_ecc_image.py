@@ -32,7 +32,7 @@ def encrypt_ECC(msg, pubKey):
 def decrypt_ECC(encryptedMsg, privKey):
     (ciphertext, nonce, authTag, ciphertextPubKey) = encryptedMsg
     sharedECCKey = privKey * ciphertextPubKey
-    secretKey = ecc_point_to_256_bit_key(sharedECCKey)
+    secretKey = ecc_point_to_64_bit_key(sharedECCKey)
     plaintext = decrypt_AES_GCM(ciphertext, nonce, authTag, secretKey)
     return plaintext
 

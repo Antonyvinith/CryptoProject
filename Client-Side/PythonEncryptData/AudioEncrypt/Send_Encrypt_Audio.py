@@ -11,7 +11,7 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client.Data
 collection = db.Audios
 
-# Load audio from file
+# ==================================Input Path==================================
 audio_file_path = "Client-Side\PythonEncryptData\AudioEncrypt\AudioInput\sample_audio.mp3"
 
 
@@ -43,7 +43,7 @@ encrypted_audio_doc = {
 collection.insert_one(encrypted_audio_doc)
 
 print("Encrypted audio",encrypted_audio_doc)
-print('Audio encrypted and saved to MongoDB successfully.')
+print('\n\nAudio encrypted and saved to MongoDB successfully.')
 
 
 
@@ -56,6 +56,3 @@ decryptedMsg = decrypt_ECC(encrypted_audio, privKey)
 binary_to_audio(decryptedMsg, output_path)
 end_time = time.time()*1000;
 
-print("\n\nTime taken to decrypt Audios data : ",(end_time-start_time)," milliseconds")
-
-print("Data Decrypted and saved Sucessfully to Parh",output_path)
