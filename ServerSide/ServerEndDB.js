@@ -230,12 +230,14 @@ app.get("/login", async (req, res) => {
     }
 
     var user = await db.collection("users").find({ username }).toArray();
+    var password = await db.collection("users").find({ password }).toArray();
 
     for (var data of user) {
       console.log(data.password);
       dbPassword = data.password;
     }
-    if (user && Password == dbPassword) {
+
+    if (user == username&& password == Password) {
       res.json({ message: "Login successful" });
     } else {
       res.status(404).json({ error: "Login Failed User not found" });

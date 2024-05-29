@@ -35,26 +35,36 @@ function AdminAuth() {
   function login() {
     if (username.length < 3 || password.length < 3) {
       alert("Enter valid details");
-    } else {
-      /*
-        need to update the create ADMIN endpoint
-        */
-      const url = "http://localhost:3000/login";
-      axios
-        .get(url, { username, password })
-        .then((res) => {
-          console.log(res.data);
-          if (res.data) {
-            navigate("/dashboard");
-            alert("Login successfull");
-          } else {
-            alert(res.data.message);
-          }
-        })
-        .catch((err) => {
-          console.log("error: ", err);
-        });
     }
+    if (
+      // (username == "Antony"||"Vinith"||"adbhi"|| "swarup"&& password == "123"||"Admin"||"adbhi"||"swarup")
+      (username == "Vinith" && password == "123") ||
+      (username == "admin" && password == "admin") ||
+      (username == "adbhi" && password == "adbhi") ||
+      (username == "swarup" && password == "swarup")
+    ) {
+      navigate("/dashboard");
+      alert("Login successfull");
+    } else {
+      alert("Invalid Credentials");
+    }
+    //   else {
+    //   const url = "http://localhost:3000/login";
+    //   axios
+    //     .get(url, { username, password })
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       if (res.data) {
+    //         navigate("/dashboard");
+    //         alert("Login successfull");
+    //       } else {
+    //         alert(res.data.message);
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       alert("Invalid login Credentials: ");
+    //     });
+    // }
   }
   function createAccountAdmin() {
     console.log(firstName, lastName, dob, phone, email, password, image);
@@ -84,7 +94,7 @@ function AdminAuth() {
             setDob(res.data.dateOfBirth);
             setEmail(res.data.email);
             setPhone(res.data.phone);
-           
+
             localStorage.setItem(
               "username",
               res.data.responseData.user.username
